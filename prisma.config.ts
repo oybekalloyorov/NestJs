@@ -1,5 +1,7 @@
 import { defineConfig, env } from "prisma/config";
+import * as dotenv from 'dotenv';
 
+dotenv.config(); // .env faylni o‘qiydi
 export default defineConfig({
   schema: "prisma/schema.prisma",
   migrations: {
