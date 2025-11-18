@@ -1,39 +1,12 @@
-// import { Global, Module } from '@nestjs/common';
-// import { PrismaClient } from '@prisma/client';
-
-// @Global()
-// @Module({
-//   providers: [
-//     {
-//       provide: PrismaClient,
-//       useValue: new PrismaClient(),
-//     },
-//   ],
-//   exports: [PrismaClient],
-// })
-// export class PrismaModule {}
-
-
-
-
-
 import { Global, Module } from '@nestjs/common';
 import { PrismaService } from './prisma.service';
-import { PrismaClient } from '@prisma/client';
+import { ConfigModule } from '@nestjs/config';
 
 @Global()
 @Module({
+  imports: [ConfigModule], // <-- bu qo‘shildi
   providers: [PrismaService],
   exports: [PrismaService],
 })
-export class PrismaModule extends PrismaClient {
-    constructor() {
-        super({
-          datasources: {
-            db: {
-              url: 'postgresql://postgres:123@127.0.0.1:5434/nest?schema=public',
-            },
-          },
-        });
-    }
-}
+export class PrismaModule {}
+
